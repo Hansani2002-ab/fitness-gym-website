@@ -19,7 +19,7 @@ const Navbar = () => {
   const navItems = [
     { name: 'Home', path: '/' },
     { name: 'Services', path: '/#services' },
-    { name: 'About', path: '/#about' },
+    { name: 'About', path: '/about' },
     { name: 'Contact', path: '/contact' },
   ];
 
@@ -143,8 +143,8 @@ const Navbar = () => {
                   </Link>
                 </motion.div>
               ))}
-              <button className="w-full bg-[#E1B12C] text-black font-black uppercase italic py-4 rounded-xl shadow-lg mt-2">
-                Join Now
+              <button className="bg-black dark:bg-transparent text-white dark:text-white border-2 border-black dark:border-white px-6 py-2 rounded-full text-xs font-black uppercase tracking-widest hover:bg-white hover:text-black dark:hover:bg-white dark:hover:text-black transition-all duration-300">
+                 Join Now
               </button>
             </div>
           </motion.div>
