@@ -4,6 +4,7 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -22,30 +23,19 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      {/* 1. Added transition-colors for smooth theme switching 
-          2. Added bg-white and dark:bg-[#2D2D2D] to fill the whole screen 
-          3. Added overflow-x-hidden to prevent the horizontal dark strip
-      */}
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-white dark:bg-[#2D2D2D] transition-colors duration-500 overflow-x-hidden`}>
-        
-        <ThemeProvider 
-          attribute="class" 
-          defaultTheme="dark" 
-          enableSystem={false}
-        >
-          {/* Ensure the wrapper also expands fully */}
-          <div className="flex flex-col min-h-screen w-full">
-            <Navbar />
-            
-            <main className="flex-grow w-full">
-              {children}
-            </main>
-            
-            <Footer />
-          </div>
-        </ThemeProvider>
-
-      </body>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased selection:bg-[#E1B12C] selection:text-black bg-white dark:bg-[#212121] text-[#26211A] dark:text-white transition-colors duration-500`}>
+  <ThemeProvider 
+    attribute="class" 
+    defaultTheme="dark" 
+    enableSystem={false}
+  >
+    <div className="min-h-screen flex flex-col">
+      <Navbar />
+      <main className="flex-grow w-full">{children}</main>
+      <Footer />
+    </div>
+  </ThemeProvider>
+</body>
     </html>
   );
 }
