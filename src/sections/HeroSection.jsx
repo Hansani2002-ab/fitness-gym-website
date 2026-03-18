@@ -121,9 +121,18 @@ const HeroSection = () => {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-20">
             <p className="text-[#E1B12C] font-black uppercase tracking-[0.6em] text-[10px] mb-4">Membership Plans</p>
-            <h2 className="text-4xl md:text-7xl font-black italic dark:text-white uppercase tracking-tighter leading-none">
-              Choose Your <span className="text-[#E1B12C]">Limits</span>
-            </h2>
+            <h2 className="text-4xl md:text-7xl font-black italic uppercase tracking-tighter leading-none mb-10 transition-colors">
+  <span 
+    className="text-transparent stroke-text"
+    style={{ 
+      WebkitTextStroke: theme === 'dark' ? '1px rgba(255,255,255,0.2)' : '1px rgba(0,0,0,0.3)',
+      display: 'inline-block'
+       }}
+     >
+        CHOOSE YOUR 
+       </span>
+         <span className="text-[#E1B12C]"> LIMITS</span>
+          </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

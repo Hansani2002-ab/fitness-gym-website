@@ -4,23 +4,22 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation'; 
 import { FaBars, FaTimes } from 'react-icons/fa';
 import ThemeToggle from './ThemeToggle';
+import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
-  const pathname = usePathname(); 
 
   useEffect(() => setMounted(true), []);
   if (!mounted) return null;
 
   const navItems = [
-    { name: 'Home', path: '/' },
-    { name: 'Services', path: '/#services' },
-    { name: 'About', path: '/about' },
-    { name: 'Contact', path: '/contact' },
+    { name: 'Home', path: '#home' },
+    { name: 'Services', path: '#services' },
+    { name: 'About', path: '#about' },
+    { name: 'Contact', path: '#contact' },
   ];
 
   return (
@@ -28,7 +27,7 @@ const Navbar = () => {
       <div className="flex items-center justify-between max-w-7xl mx-auto">
         
         {/* --- Brand Logo --- */}
-        <Link href="/">
+        <Link href="#home">
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -54,54 +53,44 @@ const Navbar = () => {
           </motion.div>
         </Link>
 
-        {/* --- Desktop Menu with Animated Underline --- */}
+        {/* --- Desktop Menu --- */}
         <div className="hidden md:flex items-center gap-10">
-          {navItems.map((item) => {
-            const isActive = pathname === item.path;
-            
-            return (
-              <Link key={item.name} href={item.path} className="relative group py-2">
-                <motion.span 
-                  whileHover={{ y: -1 }}
-                  className={`text-[11px] font-black uppercase tracking-[0.2em] transition-colors duration-300 cursor-pointer ${
-                    isActive 
-                      ? 'text-[#E1B12C]' 
-                      : 'text-[#26211A] dark:text-gray-400 group-hover:text-[#E1B12C] dark:group-hover:text-[#E1B12C]'
-                  }`}
-                >
-                  {item.name}
-                </motion.span>
-
-                {/* Hover Underline Animation */}
-                <motion.div
-                  className="absolute bottom-0 left-0 h-[2px] bg-[#E1B12C] w-0 group-hover:w-full transition-all duration-300"
-                  initial={false}
-                />
-                
-                {/* Active Page Underline */}
-                {isActive && (
-                  <motion.div
-                    layoutId="underline"
-                    className="absolute bottom-0 left-0 h-[2px] bg-[#E1B12C] w-full"
-                  />
-                )}
-              </Link>
-            );
-          })}
+          {navItems.map((item) => (
+            <Link key={item.name} href={item.path} className="relative group py-2">
+              <motion.span 
+                whileHover={{ y: -1 }}
+                className="text-[11px] font-black uppercase tracking-[0.2em] text-[#26211A] dark:text-gray-400 group-hover:text-[#E1B12C] dark:group-hover:text-[#E1B12C] transition-colors duration-300 cursor-pointer"
+              >
+                {item.name}
+              </motion.span>
+              <motion.div
+                className="absolute bottom-0 left-0 h-[2px] bg-[#E1B12C] w-0 group-hover:w-full transition-all duration-300"
+                initial={false}
+              />
+            </Link>
+          ))}
           
           <div className="h-6 w-[1px] bg-gray-200 dark:bg-gray-800 mx-2" />
           
           <div className="flex items-center gap-6">
             <ThemeToggle />
             
-            {/* --- Fixed Join Now Button (Light & Dark compatible) --- */}
-            <motion.button 
-              whileHover={{ scale: 1.05, backgroundColor: "#E1B12C", color: "#000", borderColor: "#E1B12C" }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-[#26211A] dark:bg-transparent border-2 border-[#26211A] dark:border-white text-white dark:text-white font-black uppercase italic px-7 py-2.5 rounded-full text-[10px] tracking-widest transition-all shadow-xl"
-            >
-              Join Now
-            </motion.button>
+            {/* --- Desktop Auth Logic --- */}
+            <SignedOut>
+              <SignInButton mode="modal">
+                <motion.button 
+                  whileHover={{ scale: 1.05, backgroundColor: "#E1B12C", color: "#000", borderColor: "#E1B12C" }}
+                  whileTap={{ scale: 0.95 }}
+                  className="bg-[#26211A] dark:bg-transparent border-2 border-[#26211A] dark:border-white text-white dark:text-white font-black uppercase italic px-7 py-2.5 rounded-full text-[10px] tracking-widest transition-all shadow-xl cursor-pointer"
+                >
+                  Join Now
+                </motion.button>
+              </SignInButton>
+            </SignedOut>
+
+            <SignedIn>
+              <UserButton afterSignOutUrl="/" />
+            </SignedIn>
           </div>
         </div>
 
@@ -135,17 +124,33 @@ const Navbar = () => {
                   key={item.name}
                 >
                   <Link href={item.path} onClick={() => setIsOpen(false)}>
-                    <span className={`text-sm font-black uppercase tracking-widest ${
-                      pathname === item.path ? 'text-[#E1B12C]' : 'text-[#26211A] dark:text-gray-400'
-                    }`}>
+                    <span className="text-sm font-black uppercase tracking-widest text-[#26211A] dark:text-gray-400 hover:text-[#E1B12C]">
                       {item.name}
                     </span>
                   </Link>
                 </motion.div>
               ))}
-              <button className="bg-black dark:bg-transparent text-white dark:text-white border-2 border-black dark:border-white px-6 py-2 rounded-full text-xs font-black uppercase tracking-widest hover:bg-white hover:text-black dark:hover:bg-white dark:hover:text-black transition-all duration-300">
-                 Join Now
-              </button>
+
+              {/* --- Mobile Auth Logic --- */}
+              <div className="pt-4 border-t border-gray-100 dark:border-white/5">
+                <SignedOut>
+                  <SignInButton mode="modal">
+                    <button 
+                      onClick={() => setIsOpen(false)}
+                      className="w-full bg-black dark:bg-transparent text-white dark:text-white border-2 border-black dark:border-white px-6 py-3 rounded-full text-xs font-black uppercase tracking-widest hover:bg-[#E1B12C] hover:text-black transition-all duration-300"
+                    >
+                      Join Now
+                    </button>
+                  </SignInButton>
+                </SignedOut>
+
+                <SignedIn>
+                  <div className="flex items-center justify-between bg-gray-50 dark:bg-white/5 p-4 rounded-2xl">
+                    <span className="text-xs font-bold uppercase tracking-widest">My Account</span>
+                    <UserButton afterSignOutUrl="/" />
+                  </div>
+                </SignedIn>
+              </div>
             </div>
           </motion.div>
         )}

@@ -2,19 +2,41 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  
+  --primary-gold: #E1B12C;
+  --deep-brown: #2A2419;
+  --dark-bg: #161616;
+}
+
 html {
+  
   scroll-behavior: smooth;
 }
 
-
 body {
-  background-color: white;
-  color: #26211A;
-  transition: background-color 0.3s ease;
+  @apply bg-white text-[#26211A] transition-colors duration-300 antialiased;
 }
 
 
 .dark body {
-  background-color: #212121;
-  color: white;
+  @apply bg-[#161616] text-white;
+}
+
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-gold);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: white;
 }

@@ -3,7 +3,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider"; 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-
+import { ClerkProvider } from '@clerk/nextjs' 
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,20 +22,27 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased selection:bg-[#E1B12C] selection:text-black bg-white dark:bg-[#212121] text-[#26211A] dark:text-white transition-colors duration-500`}>
-  <ThemeProvider 
-    attribute="class" 
-    defaultTheme="dark" 
-    enableSystem={false}
-  >
-    <div className="min-h-screen flex flex-col">
-      <Navbar />
-      <main className="flex-grow w-full">{children}</main>
-      <Footer />
-    </div>
-  </ThemeProvider>
-</body>
-    </html>
+    <ClerkProvider> 
+      <html lang="en" suppressHydrationWarning>
+        <body className={`${geistSans.variable} ${geistMono.variable} antialiased selection:bg-[#E1B12C] selection:text-black bg-white dark:bg-[#212121] text-[#26211A] dark:text-white transition-colors duration-500`}>
+          <ThemeProvider 
+            attribute="class" 
+            defaultTheme="dark" 
+            enableSystem={false}
+          >
+            <div className="min-h-screen flex flex-col">
+              
+              <Navbar />
+              
+              <main className="flex-grow w-full">
+                {children}
+              </main>
+              
+              <Footer />
+            </div>
+          </ThemeProvider>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

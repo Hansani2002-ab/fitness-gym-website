@@ -1,22 +1,34 @@
-// src/app/page.js
-import Navbar from '@/components/Navbar';
+
 import HeroSection from '@/sections/HeroSection';
-import Footer from '@/components/Footer';
+import AboutSection from '@/sections/AboutSection'; 
+
+import ContactSection from '@/sections/ContactSection';
 
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-black text-white">
+    <main className="min-h-screen bg-white dark:bg-[#161616] transition-colors duration-500">
       
 
-      {/* Hero Section */}
-      <HeroSection />
+      {/* 1. Hero Section - id="home" අනිවාර්යයි */}
+      <section id="home">
+        <HeroSection />
+      </section>
 
-      {/* <AboutSection /> */}
-      {/* <ServicesSection /> */}
-      {/* <ContactSection /> */}
+      {/* 2. About Section - id="about" */}
+      <section id="about" className="py-20">
+        <AboutSection />
+      </section>
+
       
-      
+   
+
+      {/* 4. Contact Section - id="contact" (Evaluation requirement) */}
+      <section id="contact" className="py-20">
+        <ContactSection />
+      </section>
+
+     
     </main>
   );
 }
