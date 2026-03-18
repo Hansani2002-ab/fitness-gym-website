@@ -3,6 +3,7 @@ import HeroSection from '@/sections/HeroSection';
 import AboutSection from '@/sections/AboutSection'; 
 
 import ContactSection from '@/sections/ContactSection';
+import ServiceSection from '@/sections/ServicesSection';
 
 
 export default function Home() {
@@ -10,9 +11,14 @@ export default function Home() {
     <main className="min-h-screen bg-white dark:bg-[#161616] transition-colors duration-500">
       
 
-      {/* 1. Hero Section - id="home" අනිවාර්යයි */}
+      {/* 1. Hero Section - id="home"  */}
       <section id="home">
         <HeroSection />
+      </section>
+
+       {/* 1. Services Section - id="services"  */}
+      <section id="services">
+        <ServiceSection />
       </section>
 
       {/* 2. About Section - id="about" */}
