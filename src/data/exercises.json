@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "name": "Barbell Bench Press",
+    "description": "The ultimate compound movement for developing chest strength and upper body power.",
+    "image": "/images/bench_press.jpg",
+    "category": "Chest"
+  },
+  {
+    "id": 2,
+    "name": "Dumbbell Lateral Raise",
+    "description": "Isolate the lateral deltoids to build wider, more defined 3D shoulders.",
+    "image": "/images/Dumbbell Lateral Raise.jpg",
+    "category": "Shoulders"
+  },
+  {
+    "id": 3,
+    "name": "Conventional Deadlift",
+    "description": "A powerhouse movement that engages your entire posterior chain and core.",
+    "image": "/images/Conventional Deadlift.jpg",
+    "category": "Back"
+  },
+  {
+    "id": 4,
+    "name": "Barbell Back Squat",
+    "description": "The king of leg exercises for building massive quads, hamstrings, and glutes.",
+    "image": "/images/Barbell Back Squat.jpg",
+    "category": "Legs"
+  },
+  {
+    "id": 5,
+    "name": "Wide Grip Pull Ups",
+    "description": "Build a wide V-taper back and improve your functional upper body strength.",
+    "image": "/images/fitness.jpg",
+    "category": "Back"
+  },
+  {
+    "id": 6,
+    "name": "Incline Dumbbell Press",
+    "description": "Targets the upper chest fibers for a more complete and aesthetic chest development.",
+    "image": "/images/Incline Dumbbell Press.jpg",
+    "category": "Chest"
+  },
+  {
+    "id": 7,
+    "name": "Seated Military Press",
+    "description": "Build powerful front delts and improve your overhead pressing stability.",
+    "image": "/images/Seated Military Press.jpg",
+    "category": "Shoulders"
+  },
+  {
+    "id": 8,
+    "name": "Leg Press",
+    "description": "Isolate the leg muscles with heavy volume without straining the lower back.",
+    "image": "/images/Leg Press.jpg",
+    "category": "Legs"
+  },
+  {
+    "id": 9,
+    "name": "Barbell Bicep Curls",
+    "description": "The classic movement for building peak bicep height and arm thickness.",
+    "image": "/images/Barbell Bicep Curls.jpg",
+    "category": "Arms"
+  },
+  {
+    "id": 10,
+    "name": "Tricep Pushdowns",
+    "description": "Target the lateral and medial heads of the triceps for massive horseshoe arms.",
+    "image": "/images/Tricep Pushdowns.jpg",
+    "category": "Arms"
+  }
+]
