@@ -1,10 +1,38 @@
 "use client";
+import { useState, useRef } from 'react'; 
+import emailjs from '@emailjs/browser';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Send, MessageSquare, Dumbbell } from 'lucide-react';
 import Link from 'next/link'; 
 import Image from 'next/image';
 
 const ContactSection = () => {
+  const formRef = useRef();
+  const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState(""); 
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    
+    emailjs.sendForm(
+      'service_w8slybl', 
+      'template_kbvbw7s', 
+      formRef.current, 
+      'yq2r4XbLSO-gEgGfe'
+    )
+    .then(() => {
+      setLoading(false);
+      setStatus("SENT");
+      formRef.current.reset(); 
+      setTimeout(() => setStatus(""), 5000); 
+      setLoading(false);
+      setStatus("ERROR");
+      console.log(error.text);
+    });
+  };
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: { 
@@ -20,7 +48,6 @@ const ContactSection = () => {
 
   return (
     <section id="contact" className="relative bg-white dark:bg-[#0a0a0a] overflow-hidden font-sans">
-      
       
       <div className="relative h-[50vh] flex items-center justify-center overflow-hidden">
         <Image 
@@ -51,14 +78,12 @@ const ContactSection = () => {
           </motion.div>
         </div>
 
-        {/* Smooth Transition Gradient */}
         <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-white dark:from-[#0a0a0a] to-transparent"></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-6 py-24 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           
-          {/* --- Section 2: Info Cards --- */}
           <motion.div 
             variants={containerVariants}
             initial="hidden"
@@ -85,7 +110,6 @@ const ContactSection = () => {
               </motion.div>
             ))}
 
-            {/* Visual Badge */}
             <motion.div 
               animate={{ y: [0, -10, 0] }}
               transition={{ repeat: Infinity, duration: 3 }}
@@ -99,7 +123,6 @@ const ContactSection = () => {
             </motion.div>
           </motion.div>
 
-          {/* --- Section 3: Contact Form --- */}
           <motion.div 
             initial={{ x: 50, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
@@ -107,30 +130,39 @@ const ContactSection = () => {
             viewport={{ once: true }}
             className="bg-gray-50 dark:bg-[#111] p-10 rounded-[3rem] border border-gray-100 dark:border-white/5 shadow-2xl relative"
           >
-            <form className="space-y-6">
+            
+            <form ref={formRef} onSubmit={sendEmail} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-2">Full Name</label>
-                  <input type="text" placeholder="John Doe" className="w-full p-4 rounded-2xl bg-white dark:bg-black border dark:border-white/10 dark:text-white outline-none focus:border-[#E1B12C] transition-all font-semibold" />
+                  
+                  <input name="user_name" required type="text" placeholder="John Doe" className="w-full p-4 rounded-2xl bg-white dark:bg-black border dark:border-white/10 dark:text-white outline-none focus:border-[#E1B12C] transition-all font-semibold" />
                 </div>
                 <div className="space-y-2">
                   <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-2">Email Address</label>
-                  <input type="email" placeholder="john@example.com" className="w-full p-4 rounded-2xl bg-white dark:bg-black border dark:border-white/10 dark:text-white outline-none focus:border-[#E1B12C] transition-all font-semibold" />
+                  <input name="user_email" required type="email" placeholder="john@example.com" className="w-full p-4 rounded-2xl bg-white dark:bg-black border dark:border-white/10 dark:text-white outline-none focus:border-[#E1B12C] transition-all font-semibold" />
                 </div>
               </div>
 
               <div className="space-y-2">
                 <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-2">Your Message</label>
-                <textarea rows="4" placeholder="How can we help you?" className="w-full p-4 rounded-2xl bg-white dark:bg-black border dark:border-white/10 dark:text-white outline-none focus:border-[#E1B12C] transition-all resize-none font-semibold"></textarea>
+                <textarea name="message" required rows="4" placeholder="How can we help you?" className="w-full p-4 rounded-2xl bg-white dark:bg-black border dark:border-white/10 dark:text-white outline-none focus:border-[#E1B12C] transition-all resize-none font-semibold"></textarea>
               </div>
 
               <motion.button 
+                type="submit"
+                disabled={loading}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 className="w-full py-5 bg-[#E1B12C] text-black font-black uppercase tracking-tighter rounded-2xl flex items-center justify-center gap-3 shadow-lg shadow-[#E1B12C]/20 hover:shadow-[#E1B12C]/40 transition-all"
               >
-                Send Message <Send size={20} />
+                {loading ? "Sending..." : status === "SENT" ? "Message Sent! ✅" : "Send Message"}
+                {!loading && status !== "SENT" && <Send size={20} />}
               </motion.button>
+              
+              {/* Success/Error Alerts */}
+              {status === "SENT" && <p className="text-green-500 text-center font-bold text-xs mt-2 uppercase">Thank you! Your email is on the way.</p>}
+              {status === "ERROR" && <p className="text-red-500 text-center font-bold text-xs mt-2 uppercase">Failed to send. Please try again.</p>}
             </form>
 
             <div className="absolute -bottom-6 -right-6 text-[#E1B12C]/5 rotate-12">
