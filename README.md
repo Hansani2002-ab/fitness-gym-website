@@ -32,8 +32,8 @@ Fitness Pro is a modern and responsive gym promotional website built to showcase
 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/fitness-pro.git
-cd fitness-pro
+git clone https://github.com/Hansani2002-ab/fitness-gym-website
+
 ```
 
 2. Install dependencies
