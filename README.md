@@ -64,7 +64,7 @@ http://localhost:3000
 
 ## 🎨 Figma Design
 
-👉 https://www.figma.com/design/VNkJ8vB2wATXuOwfCSx0kX/Untitled?node-id=0-1&p=f&t=Ubk4CXlz7sHfKpUt-0
+👉 https://www.figma.com/design/VNkJ8vB2wATXuOwfCSx0kX/Untitled?node-id=0-1&t=5slj4MRkbYim8OE2-1
 
 ---
 
