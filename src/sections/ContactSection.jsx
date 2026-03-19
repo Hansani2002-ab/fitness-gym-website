@@ -1,10 +1,10 @@
 "use client";
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Send, MessageSquare, Dumbbell } from 'lucide-react';
-import Link from 'next/link'; // Home එකට යන්න මේක අනිවාර්යයෙන් ඕනේ
+import Link from 'next/link'; 
+import Image from 'next/image';
 
 const ContactSection = () => {
-  // Animation Variants
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: { 
@@ -21,51 +21,44 @@ const ContactSection = () => {
   return (
     <section id="contact" className="relative bg-white dark:bg-[#0a0a0a] overflow-hidden font-sans">
       
-      {/* 1. Mocha Brown Hero Header (Brown Part ONLY) */}
-      <div className="relative h-[400px] flex flex-col items-center justify-center bg-[#1F1B14] overflow-hidden">
-        {/* Animated Background Elements */}
-        <motion.div 
-          animate={{ scale: [1, 1.2, 1], opacity: [0.05, 0.1, 0.05] }}
-          transition={{ duration: 15, repeat: Infinity }}
-          className="absolute w-[700px] h-[700px] border border-[#E1B12C]/20 rounded-full"
+      
+      <div className="relative h-[50vh] flex items-center justify-center overflow-hidden">
+        <Image 
+          src="/images/contact bg.jpg" 
+          alt="Contact Us"
+          fill
+          className="object-cover brightness-[0.3] scale-105"
+          priority
         />
-        
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          className="relative z-10 text-center"
-        >
-          <h1 className="text-7xl md:text-8xl font-black text-white uppercase tracking-tighter">
+        <div className="relative z-10 text-center px-4">
+          <motion.h1 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-6xl md:text-9xl font-black italic text-white uppercase tracking-tighter"
+          >
             CONTACT <span className="text-[#E1B12C]">US</span>
-          </h1>
+          </motion.h1>
           
-          {/* Clickable Breadcrumb Navigation */}
-          <div className="flex items-center justify-center gap-3 mt-4 text-[#E1B12C] font-bold tracking-[0.3em] text-[10px] uppercase">
-            <span className="w-8 h-[1px] bg-[#E1B12C]/40"></span>
-            
-            <Link 
-              href="/" 
-              className="hover:text-white transition-colors duration-300 cursor-pointer"
-            >
-              Home
-            </Link>
-            
-            <span className="text-white/40">/</span>
-            
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5 }}
+            className="flex items-center justify-center gap-2 mt-6 text-[11px] font-bold uppercase tracking-[0.5em]"
+          >
+            <Link href="/" className="text-gray-400 hover:text-[#E1B12C] transition-colors">Home</Link>
+            <span className="text-[#E1B12C]">/</span>
             <span className="text-white">Contact</span>
-            
-            <span className="w-8 h-[1px] bg-[#E1B12C]/40"></span>
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
 
-        {/* Smooth Transition to Body */}
+        {/* Smooth Transition Gradient */}
         <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-white dark:from-[#0a0a0a] to-transparent"></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-6 py-24 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           
-          {/* 2. Left Side: Info Cards (Clean Black Look) */}
+          {/* --- Section 2: Info Cards --- */}
           <motion.div 
             variants={containerVariants}
             initial="hidden"
@@ -92,7 +85,7 @@ const ContactSection = () => {
               </motion.div>
             ))}
 
-            {/* Visual Element: Gold/Black Animated Badge */}
+            {/* Visual Badge */}
             <motion.div 
               animate={{ y: [0, -10, 0] }}
               transition={{ repeat: Infinity, duration: 3 }}
@@ -106,7 +99,7 @@ const ContactSection = () => {
             </motion.div>
           </motion.div>
 
-          {/* 3. Right Side: Form (Original Black Look) */}
+          {/* --- Section 3: Contact Form --- */}
           <motion.div 
             initial={{ x: 50, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}

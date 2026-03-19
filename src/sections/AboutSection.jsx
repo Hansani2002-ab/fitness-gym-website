@@ -19,7 +19,7 @@ const AboutPage = () => {
     { label: "Fitness", value: "75%" },
   ];
 
-  // අර Screenshot එකේ විදිහට Trainer data ටික
+  
   const trainers = [
     { name: "Matt", role: "GYM TRAINER", image: "/images/matt.jpg" },
     { name: "Rosy", role: "FITNESS COACH", image: "/images/rosy.jpg" },
