@@ -15,7 +15,6 @@ const ContactSection = () => {
     e.preventDefault();
     setLoading(true);
 
-    
     emailjs.sendForm(
       'service_w8slybl', 
       'template_kbvbw7s', 
@@ -23,13 +22,18 @@ const ContactSection = () => {
       'yq2r4XbLSO-gEgGfe'
     )
     .then(() => {
+      
       setLoading(false);
       setStatus("SENT");
       formRef.current.reset(); 
       setTimeout(() => setStatus(""), 5000); 
+    })
+    .catch((error) => {
+      
       setLoading(false);
       setStatus("ERROR");
-      console.log(error.text);
+      console.log("EmailJS Error:", error.text);
+      setTimeout(() => setStatus(""), 5000);
     });
   };
 
@@ -135,7 +139,6 @@ const ContactSection = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-2">Full Name</label>
-                  
                   <input name="user_name" required type="text" placeholder="John Doe" className="w-full p-4 rounded-2xl bg-white dark:bg-black border dark:border-white/10 dark:text-white outline-none focus:border-[#E1B12C] transition-all font-semibold" />
                 </div>
                 <div className="space-y-2">
@@ -160,7 +163,6 @@ const ContactSection = () => {
                 {!loading && status !== "SENT" && <Send size={20} />}
               </motion.button>
               
-              {/* Success/Error Alerts */}
               {status === "SENT" && <p className="text-green-500 text-center font-bold text-xs mt-2 uppercase">Thank you! Your email is on the way.</p>}
               {status === "ERROR" && <p className="text-red-500 text-center font-bold text-xs mt-2 uppercase">Failed to send. Please try again.</p>}
             </form>
