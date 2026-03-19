@@ -1,36 +1,86 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🏋️ Fitness Pro - Gym Promotional Website
 
-## Getting Started
+## 📌 Project Overview
 
-First, run the development server:
+Fitness Pro is a modern and responsive gym promotional website built to showcase services, trainers, and membership plans while allowing users to contact the gym easily. The design focuses on clean UI/UX and smooth user interactions.
+
+---
+
+## 🚀 Tech Stack
+
+* ⚡ Next.js
+* 🎨 Tailwind CSS
+* 📧 EmailJS (Contact form integration)
+* 🔐 Clerk (Authentication)
+* 🎬 Framer Motion (Animations)
+
+---
+
+## ✨ Features
+
+* Fully responsive design (Mobile, Tablet, Desktop)
+* Modern UI with dark & light theme
+* Animated sections using Framer Motion
+* Contact form with EmailJS integration
+* Clean and reusable component structure
+* Optimized performance with Next.js
+
+---
+
+## 🛠️ Setup Instructions
+
+1. Clone the repository
+
+```bash
+git clone https://github.com/your-username/fitness-pro.git
+cd fitness-pro
+```
+
+2. Install dependencies
+
+```bash
+npm install
+```
+
+3. Run the development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Open in browser
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+```bash
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🌐 Live Demo
 
-To learn more about Next.js, take a look at the following resources:
+👉 https://fitness-gym-website-olivhbdnw-hansanis-projects-46d20b86.vercel.app/
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🎨 Figma Design
 
-## Deploy on Vercel
+👉 https://www.figma.com/design/VNkJ8vB2wATXuOwfCSx0kX/Untitled?node-id=0-1&p=f&t=Ubk4CXlz7sHfKpUt-0
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📂 Folder Structure (Simplified)
+
+```
+src/
+ ├── app/
+ ├── components/
+ ├── sections/
+ ├── lib/
+ ├── hooks/
+```
+
+---
+
+## 📬 Contact
+
+Feel free to reach out for any feedback or collaboration opportunities!
